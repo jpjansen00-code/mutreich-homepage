@@ -4,998 +4,217 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MUTREICH – Der Weg beginnt mit Mut.</title>
-  <meta name="description" content="MUTREICH – Coaching für Menschen, die mutig neu anfangen. Mit Jan Peter Jansen." />
+  <meta name="description" content="MUTREICH begleitet Menschen, die spüren dass mehr möglich ist. Coaching, Retreats und echte Begleitung mit Jan Peter Jansen." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    /* ── Reset & Base ─────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --teal:   #5E9C8D;
-      --dark:   #2D3B3A;
-      --beige:  #D9D0BD;
-      --yellow: #E2B648;
-      --white:  #FAFAF8;
-      --text:   #1E2B2A;
-      --muted:  #6B7D7C;
-      --border: rgba(45,59,58,.12);
-      --radius: 16px;
-      --shadow: 0 4px 24px rgba(45,59,58,.10);
-      --shadow-lg: 0 12px 48px rgba(45,59,58,.16);
-      --transition: .25s ease;
-      font-family: 'Sora', system-ui, sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--white);
-      color: var(--text);
-      line-height: 1.65;
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    img { display: block; max-width: 100%; }
-    a { color: inherit; text-decoration: none; }
-
-    /* ── Utilities ────────────────────────────────────────────── */
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .section {
-      padding: 96px 0;
-    }
-
-    .section--alt {
-      background: var(--beige);
-    }
-
-    .section--dark {
-      background: var(--dark);
-      color: var(--white);
-    }
-
-    .label {
-      display: inline-block;
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 12px;
-    }
-
-    .section--dark .label { color: var(--yellow); }
-
-    h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; }
-    h2 { font-size: clamp(2rem, 4vw, 2.75rem); }
-    h3 { font-size: 1.25rem; font-weight: 600; }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 32px;
-      border-radius: 50px;
-      font-size: .95rem;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
-      border: none;
-      letter-spacing: .02em;
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-
-    .btn--primary {
-      background: var(--teal);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(94,156,141,.35);
-    }
-    .btn--primary:hover { background: #4d8a7b; box-shadow: 0 8px 28px rgba(94,156,141,.45); }
-
-    .btn--yellow {
-      background: var(--yellow);
-      color: var(--dark);
-      box-shadow: 0 4px 20px rgba(226,182,72,.30);
-    }
-    .btn--yellow:hover { background: #d4a93a; box-shadow: 0 8px 28px rgba(226,182,72,.40); }
-
-    .btn--outline {
-      background: transparent;
-      border: 2px solid var(--teal);
-      color: var(--teal);
-    }
-    .btn--outline:hover { background: var(--teal); color: #fff; }
-
-    .btn--outline-light {
-      background: transparent;
-      border: 2px solid rgba(255,255,255,.5);
-      color: #fff;
-    }
-    .btn--outline-light:hover { background: rgba(255,255,255,.12); border-color: #fff; }
-
-    /* ── Nav ──────────────────────────────────────────────────── */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 0 24px;
-      transition: background var(--transition), box-shadow var(--transition);
-    }
-
-    .nav.scrolled {
-      background: rgba(45,59,58,.97);
-      box-shadow: 0 2px 24px rgba(0,0,0,.18);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav__inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav__logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -.02em;
-    }
-
-    .nav__logo span { color: var(--yellow); }
-
-    .nav__links {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-      list-style: none;
-    }
-
-    .nav__links a {
-      color: rgba(255,255,255,.8);
-      font-size: .9rem;
-      font-weight: 500;
-      transition: color var(--transition);
-    }
-    .nav__links a:hover { color: #fff; }
-
-    .nav__cta { margin-left: 12px; }
-
-    /* Hamburger */
-    .nav__burger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 6px;
-    }
-    .nav__burger span {
-      display: block;
-      width: 24px; height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: var(--transition);
-    }
-
-    .nav__mobile {
-      display: none;
-      flex-direction: column;
-      background: var(--dark);
-      padding: 24px;
-      gap: 20px;
-    }
-    .nav__mobile a {
-      color: rgba(255,255,255,.85);
-      font-size: 1rem;
-      font-weight: 500;
-    }
-    .nav__mobile.open { display: flex; }
-
-    /* ── Hero ─────────────────────────────────────────────────── */
+    /* ── Hero ──────────────────────────────────────────── */
     .hero {
-      position: relative;
       min-height: 100vh;
+      background: var(--dark);
       display: flex;
       align-items: center;
+      position: relative;
       overflow: hidden;
-      background: var(--dark);
     }
-
-    /* Organic background shapes */
-    .hero__bg {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
+    .hero__bg { position: absolute; inset: 0; pointer-events: none; }
     .hero__shape {
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
-      opacity: .35;
+      filter: blur(90px);
     }
-
-    .hero__shape--1 {
-      width: 600px; height: 600px;
-      background: var(--teal);
-      top: -150px; right: -100px;
-    }
-
-    .hero__shape--2 {
-      width: 400px; height: 400px;
-      background: var(--yellow);
-      bottom: -100px; left: 20%;
-      opacity: .18;
-    }
-
-    .hero__shape--3 {
-      width: 300px; height: 300px;
-      background: var(--teal);
-      bottom: 100px; right: 200px;
-      opacity: .15;
-    }
-
-    /* Grid overlay for texture */
+    .hero__shape--1 { width: 560px; height: 560px; background: var(--teal); top: -140px; right: -80px; opacity: .28; }
+    .hero__shape--2 { width: 380px; height: 380px; background: var(--yellow); bottom: -80px; left: 22%; opacity: .14; }
+    .hero__shape--3 { width: 260px; height: 260px; background: var(--teal); bottom: 120px; right: 180px; opacity: .12; }
     .hero::after {
       content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-      background-size: 48px 48px;
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size: 52px 52px;
       pointer-events: none;
     }
-
     .hero__content {
-      position: relative;
-      z-index: 2;
-      max-width: 1160px;
-      margin: 0 auto;
+      position: relative; z-index: 2;
+      max-width: 1160px; margin: 0 auto;
       padding: 120px 24px 80px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 72px;
       align-items: center;
     }
-
-    .hero__eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .hero__eyebrow-line {
-      width: 40px; height: 2px;
-      background: var(--yellow);
-    }
-
-    .hero__eyebrow-text {
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--yellow);
-    }
-
-    .hero__title {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -.03em;
-      margin-bottom: 12px;
-      line-height: 1.1;
-    }
-
-    .hero__claim {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: var(--yellow);
-      font-weight: 600;
-      margin-bottom: 24px;
-      font-style: italic;
-    }
-
-    .hero__lead {
-      font-size: clamp(1rem, 1.5vw, 1.1rem);
-      color: rgba(255,255,255,.75);
-      max-width: 480px;
-      margin-bottom: 40px;
-      line-height: 1.7;
-    }
-
-    .hero__actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    /* Stats bar */
-    .hero__stats {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .hero__stat-card {
+    .hero__eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .hero__eyebrow-line { width: 36px; height: 2px; background: var(--yellow); }
+    .hero__eyebrow-text { font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); }
+    .hero__title { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; line-height: 1.08; margin-bottom: 10px; }
+    .hero__claim { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--yellow); font-weight: 600; font-style: italic; margin-bottom: 22px; }
+    .hero__lead { font-size: clamp(.95rem, 1.4vw, 1.05rem); color: rgba(255,255,255,.72); max-width: 480px; margin-bottom: 36px; line-height: 1.72; }
+    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero__right { display: flex; flex-direction: column; gap: 20px; }
+    .hero__card {
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.1);
       border-radius: var(--radius);
-      padding: 28px 32px;
+      padding: 24px 28px;
       backdrop-filter: blur(8px);
     }
+    .hero__card--accent { background: var(--teal); border-color: transparent; }
+    .hero__card-num { font-size: 2.2rem; font-weight: 800; color: var(--yellow); line-height: 1; margin-bottom: 4px; }
+    .hero__card--accent .hero__card-num { color: #fff; }
+    .hero__card-label { font-size: .83rem; color: rgba(255,255,255,.65); font-weight: 500; }
+    .hero__card--accent .hero__card-label { color: rgba(255,255,255,.85); }
 
-    .hero__stat-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--yellow);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .hero__stat-label {
-      font-size: .875rem;
-      color: rgba(255,255,255,.65);
-      font-weight: 500;
-    }
-
-    .hero__stat-card--accent {
-      background: var(--teal);
-      border-color: transparent;
-    }
-
-    .hero__stat-card--accent .hero__stat-label { color: rgba(255,255,255,.85); }
-
-    /* ── About ────────────────────────────────────────────────── */
-    .about__inner {
+    /* ── Intro ─────────────────────────────────────────── */
+    .intro__inner {
       display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 80px;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
       align-items: center;
     }
-
-    .about__photo {
-      position: relative;
-    }
-
-    .about__photo-placeholder {
+    .intro__photo {
       aspect-ratio: 3/4;
       border-radius: 24px;
       background: linear-gradient(135deg, var(--teal) 0%, var(--dark) 100%);
-      display: flex;
-      align-items: flex-end;
-      padding: 32px;
-      overflow: hidden;
+      display: flex; align-items: flex-end; padding: 28px;
+      position: relative; overflow: hidden;
     }
-
-    .about__photo-placeholder::before {
+    .intro__photo::before {
       content: '';
-      position: absolute;
-      top: 30px; left: 50%;
-      transform: translateX(-50%);
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.15);
+      position: absolute; top: 28px; left: 50%; transform: translateX(-50%);
+      width: 90px; height: 90px; border-radius: 50%; background: rgba(255,255,255,.13);
     }
-
-    .about__photo-placeholder::after {
+    .intro__photo::after {
       content: '';
-      position: absolute;
-      top: 148px; left: 50%;
-      transform: translateX(-50%);
-      width: 160px; height: 200px;
-      border-radius: 80px 80px 0 0;
-      background: rgba(255,255,255,.1);
+      position: absolute; top: 135px; left: 50%; transform: translateX(-50%);
+      width: 150px; height: 190px; border-radius: 75px 75px 0 0; background: rgba(255,255,255,.08);
     }
-
-    .about__photo-note {
-      position: relative;
-      z-index: 1;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 10px;
-      padding: 10px 16px;
-      font-size: .8rem;
-      color: rgba(255,255,255,.8);
-      text-align: center;
-      width: 100%;
+    .intro__photo-note {
+      position: relative; z-index: 1;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px; padding: 9px 14px;
+      font-size: .78rem; color: rgba(255,255,255,.75); text-align: center; width: 100%;
     }
-
-    .about__accent-box {
-      position: absolute;
-      bottom: -20px; right: -20px;
-      background: var(--yellow);
-      border-radius: 16px;
-      padding: 20px 24px;
+    .intro__accent {
+      position: absolute; bottom: -16px; right: -16px;
+      background: var(--yellow); border-radius: 14px; padding: 16px 20px;
       box-shadow: var(--shadow-lg);
     }
-
-    .about__accent-box strong {
-      display: block;
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: var(--dark);
-      line-height: 1;
+    .intro__accent strong { display: block; font-size: 1.6rem; font-weight: 800; color: var(--dark); line-height: 1; }
+    .intro__accent span { font-size: .75rem; color: rgba(45,59,58,.65); font-weight: 600; }
+    .intro__text h2 { margin-bottom: 14px; }
+    .intro__quote {
+      font-size: 1.05rem; font-weight: 500; color: var(--teal);
+      margin-bottom: 20px; line-height: 1.55;
     }
+    .intro__body p { color: var(--muted); margin-bottom: 14px; font-size: .95rem; }
+    .intro__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
 
-    .about__accent-box span {
-      font-size: .8rem;
-      color: rgba(45,59,58,.7);
-      font-weight: 600;
-    }
-
-    .about__text h2 { margin-bottom: 16px; }
-
-    .about__intro {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--teal);
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
-
-    .about__body p {
-      color: var(--muted);
-      margin-bottom: 16px;
-      font-size: .975rem;
-    }
-
-    .about__body p:last-child { margin-bottom: 0; }
-
-    .about__body strong { color: var(--text); }
-
-    .about__chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 32px;
-    }
-
-    .chip {
-      background: rgba(94,156,141,.1);
-      border: 1px solid rgba(94,156,141,.25);
-      color: var(--teal);
-      font-size: .8rem;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 50px;
-    }
-
-    /* ── Offers ───────────────────────────────────────────────── */
-    .offers__header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 64px;
-    }
-
-    .offers__header h2 { margin-bottom: 16px; }
-
-    .offers__header p {
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .offers__grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-
+    /* ── Teaser-Angebote ───────────────────────────────── */
+    .offers__header { text-align: center; max-width: 580px; margin: 0 auto 56px; }
+    .offers__header h2 { margin-bottom: 12px; }
+    .offers__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
     .offer-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 40px 32px;
-      display: flex;
-      flex-direction: column;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 24px; padding: 36px 28px;
+      display: flex; flex-direction: column;
       transition: transform var(--transition), box-shadow var(--transition);
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-
-    .offer-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-    }
-
+    .offer-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
     .offer-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--teal);
-      border-radius: 24px 24px 0 0;
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; border-radius: 24px 24px 0 0;
     }
-
+    .offer-card:nth-child(1)::before { background: var(--teal); }
     .offer-card:nth-child(2)::before { background: var(--yellow); }
     .offer-card:nth-child(3)::before { background: var(--dark); }
-
-    .offer-card__icon {
-      width: 52px; height: 52px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      font-size: 1.5rem;
-    }
-
-    .offer-card:nth-child(1) .offer-card__icon { background: rgba(94,156,141,.12); }
-    .offer-card:nth-child(2) .offer-card__icon { background: rgba(226,182,72,.12); }
-    .offer-card:nth-child(3) .offer-card__icon { background: rgba(45,59,58,.08); }
-
-    .offer-card__tag {
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .offer-card__title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 12px;
-      line-height: 1.3;
-    }
-
-    .offer-card__subtitle {
-      font-size: .875rem;
-      color: var(--teal);
-      font-weight: 600;
-      font-style: italic;
-      margin-bottom: 16px;
-    }
-
-    .offer-card:nth-child(2) .offer-card__subtitle { color: #c09b30; }
-
-    .offer-card__desc {
-      font-size: .9rem;
-      color: var(--muted);
-      line-height: 1.65;
-      flex: 1;
-      margin-bottom: 24px;
-    }
-
-    .offer-card__meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 28px;
-    }
-
-    .meta-tag {
-      background: var(--beige);
-      font-size: .75rem;
-      font-weight: 600;
-      color: var(--text);
-      padding: 4px 10px;
-      border-radius: 50px;
-    }
-
-    .offer-card__btn {
-      align-self: flex-start;
-    }
-
-    /* ── Partners ─────────────────────────────────────────────── */
-    .partners__header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 64px;
-    }
-
-    .partners__header h2 { margin-bottom: 16px; color: #fff; }
-    .partners__header p { color: rgba(255,255,255,.6); }
-
-    .partners__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-
-    .partner-card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 24px;
-      padding: 40px;
-      transition: background var(--transition);
-    }
-
-    .partner-card:hover { background: rgba(255,255,255,.09); }
-
-    .partner-card__avatar {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal), var(--dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 24px;
-    }
-
-    .partner-card:nth-child(2) .partner-card__avatar {
-      background: linear-gradient(135deg, var(--yellow), #b88a20);
-      color: var(--dark);
-    }
-
-    .partner-card__name {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-
-    .partner-card__focus {
-      font-size: .8rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 16px;
-    }
-
-    .partner-card:nth-child(2) .partner-card__focus { color: var(--yellow); }
-
-    .partner-card__text {
-      font-size: .9rem;
-      color: rgba(255,255,255,.65);
-      line-height: 1.65;
-      margin-bottom: 20px;
-    }
-
-    .partner-card__link {
-      font-size: .875rem;
-      color: var(--teal);
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .offer-card__icon { font-size: 1.8rem; margin-bottom: 20px; }
+    .offer-card__tag { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .offer-card__title { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+    .offer-card__desc { font-size: .88rem; color: var(--muted); line-height: 1.65; flex: 1; margin-bottom: 24px; }
+    .offer-card__link {
+      font-size: .85rem; font-weight: 600; color: var(--teal);
+      display: inline-flex; align-items: center; gap: 6px;
       transition: gap var(--transition);
     }
+    .offer-card__link:hover { gap: 10px; }
 
-    .partner-card:nth-child(2) .partner-card__link { color: var(--yellow); }
-    .partner-card__link:hover { gap: 10px; }
-
-    /* ── Testimonials ─────────────────────────────────────────── */
-    .testimonials__header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 64px;
+    /* ── Team-Teaser ───────────────────────────────────── */
+    .team-teaser__header { text-align: center; max-width: 580px; margin: 0 auto 56px; }
+    .team-teaser__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .team-card {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px; padding: 36px 28px;
+      transition: background var(--transition);
     }
-
-    .testimonials__header h2 { margin-bottom: 16px; }
-    .testimonials__header p { color: var(--muted); }
-
-    .testimonials__placeholder {
-      border: 2px dashed rgba(94,156,141,.3);
-      border-radius: 24px;
-      padding: 80px 40px;
-      text-align: center;
-      background: rgba(94,156,141,.03);
-    }
-
-    .testimonials__placeholder-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      opacity: .4;
-    }
-
-    .testimonials__placeholder h3 {
-      font-size: 1.1rem;
-      color: var(--muted);
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .testimonials__placeholder p {
-      font-size: .875rem;
-      color: rgba(107,125,124,.6);
-    }
-
-    /* ── Contact ──────────────────────────────────────────────── */
-    .contact__inner {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .contact__left h2 { margin-bottom: 16px; }
-
-    .contact__lead {
-      color: var(--muted);
-      font-size: 1rem;
-      margin-bottom: 40px;
-      line-height: 1.7;
-    }
-
-    .contact__info {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .contact__info-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: .9rem;
-      color: var(--muted);
-    }
-
-    .contact__info-icon {
-      width: 40px; height: 40px;
-      background: rgba(94,156,141,.1);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-
-    .contact__form {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 48px;
-      box-shadow: var(--shadow);
-    }
-
-    .form-group {
+    .team-card:hover { background: rgba(255,255,255,.09); }
+    .team-card__avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; font-weight: 800; color: #fff;
       margin-bottom: 20px;
     }
+    .team-card:nth-child(1) .team-card__avatar { background: linear-gradient(135deg,var(--teal),#3a7566); }
+    .team-card:nth-child(2) .team-card__avatar { background: linear-gradient(135deg,#6b8f8a,var(--dark)); }
+    .team-card:nth-child(3) .team-card__avatar { background: linear-gradient(135deg,var(--yellow),#b88a20); color: var(--dark); }
+    .team-card__name { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .team-card__role { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+    .team-card:nth-child(3) .team-card__role { color: var(--yellow); }
+    .team-card__text { font-size: .88rem; color: rgba(255,255,255,.6); line-height: 1.65; }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    label {
-      display: block;
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 14px 18px;
-      background: var(--beige);
-      border: 1.5px solid transparent;
-      border-radius: 12px;
-      font-family: inherit;
-      font-size: .95rem;
-      color: var(--text);
-      transition: border-color var(--transition), background var(--transition);
-      outline: none;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      border-color: var(--teal);
-      background: #fff;
-    }
-
-    textarea { resize: vertical; min-height: 120px; }
-
-    .form-select-group {
-      margin-bottom: 20px;
-    }
-
-    .form-submit {
-      width: 100%;
-      padding: 16px;
-      font-size: 1rem;
-    }
-
-    .form-note {
+    /* ── CTA-Banner ────────────────────────────────────── */
+    .cta-banner {
+      background: var(--teal);
+      padding: 72px 0;
       text-align: center;
-      font-size: .775rem;
-      color: var(--muted);
-      margin-top: 16px;
     }
+    .cta-banner h2 { color: #fff; margin-bottom: 12px; }
+    .cta-banner p { color: rgba(255,255,255,.82); max-width: 500px; margin: 0 auto 32px; font-size: 1rem; }
 
-    /* ── Footer ───────────────────────────────────────────────── */
-    .footer {
-      background: #1a2423;
-      color: rgba(255,255,255,.5);
-      padding: 48px 0 32px;
-    }
-
-    .footer__inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .footer__top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 32px;
-      margin-bottom: 32px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .footer__logo {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -.02em;
-    }
-
-    .footer__logo span { color: var(--yellow); }
-
-    .footer__claim {
-      font-size: .875rem;
-      color: rgba(255,255,255,.4);
-      font-style: italic;
-      margin-top: 4px;
-    }
-
-    .footer__links {
-      display: flex;
-      gap: 28px;
-    }
-
-    .footer__links a {
-      font-size: .875rem;
-      color: rgba(255,255,255,.45);
-      transition: color var(--transition);
-    }
-
-    .footer__links a:hover { color: rgba(255,255,255,.8); }
-
-    .footer__bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer__copy {
-      font-size: .8rem;
-    }
-
-    .footer__legal {
-      display: flex;
-      gap: 20px;
-    }
-
-    .footer__legal a {
-      font-size: .8rem;
-      color: rgba(255,255,255,.35);
-      transition: color var(--transition);
-    }
-
-    .footer__legal a:hover { color: rgba(255,255,255,.7); }
-
-    /* ── Scroll-in animation ──────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 { transition-delay: .1s; }
-    .reveal-delay-2 { transition-delay: .2s; }
-    .reveal-delay-3 { transition-delay: .3s; }
-
-    /* ── Responsive ───────────────────────────────────────────── */
+    /* ── Responsive ────────────────────────────────────── */
     @media (max-width: 900px) {
-      .nav__links, .nav__cta { display: none; }
-      .nav__burger { display: flex; }
-
-      .hero__content {
-        grid-template-columns: 1fr;
-        gap: 48px;
-        text-align: center;
-      }
-
+      .hero__content { grid-template-columns: 1fr; gap: 48px; text-align: center; }
       .hero__eyebrow { justify-content: center; }
-      .hero__lead { margin: 0 auto 40px; }
+      .hero__lead { margin-left: auto; margin-right: auto; }
       .hero__actions { justify-content: center; }
-
-      .hero__stats {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-
-      .hero__stat-card { flex: 1; min-width: 140px; }
-
-      .about__inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .about__photo { max-width: 360px; margin: 0 auto; }
-
-      .offers__grid { grid-template-columns: 1fr; }
-
-      .partners__grid { grid-template-columns: 1fr; }
-
-      .contact__inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .form-row { grid-template-columns: 1fr; }
-
-      .footer__top {
-        flex-direction: column;
-        gap: 24px;
-        text-align: center;
-      }
-
-      .footer__bottom {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .section { padding: 72px 0; }
-      .contact__form { padding: 32px 24px; }
-      .hero__stat-card { padding: 20px; }
+      .hero__right { flex-direction: row; flex-wrap: wrap; }
+      .hero__card { flex: 1; min-width: 140px; }
+      .intro__inner { grid-template-columns: 1fr; gap: 48px; }
+      .intro__photo { max-width: 340px; margin: 0 auto; }
+      .offers__grid, .team-teaser__grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!--  NAV                                                       -->
-  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#" class="nav__logo">MUT<span>REICH</span></a>
+      <a href="index.html" class="nav__logo">MUT<span>REICH</span></a>
       <ul class="nav__links">
-        <li><a href="#ueber-mich">Über mich</a></li>
-        <li><a href="#angebote">Angebote</a></li>
-        <li><a href="#partner">Partner</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="angebote.html">Angebote</a></li>
+        <li><a href="fuer-wen.html">Für wen</a></li>
+        <li><a href="vortrag.html">Vortrag</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
       </ul>
-      <a href="#kontakt" class="btn btn--yellow nav__cta">Gespräch vereinbaren</a>
-      <button class="nav__burger" id="burger" aria-label="Menü">
+      <a href="kontakt.html" class="btn btn--yellow nav__cta">Gespräch vereinbaren</a>
+      <button class="nav__burger" id="burger" aria-label="Menü öffnen">
         <span></span><span></span><span></span>
       </button>
     </div>
     <div class="nav__mobile" id="mobileMenu">
-      <a href="#ueber-mich">Über mich</a>
-      <a href="#angebote">Angebote</a>
-      <a href="#partner">Partner</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="#kontakt" class="btn btn--yellow" style="align-self:flex-start">Gespräch vereinbaren</a>
+      <a href="team.html">Team</a>
+      <a href="angebote.html">Angebote</a>
+      <a href="fuer-wen.html">Für wen</a>
+      <a href="vortrag.html">Vortrag</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="kontakt.html" class="btn btn--yellow" style="align-self:flex-start;margin-top:4px">Gespräch vereinbaren</a>
     </div>
   </nav>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!--  HERO                                                      -->
-  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- HERO -->
   <section class="hero" id="start">
     <div class="hero__bg">
       <div class="hero__shape hero__shape--1"></div>
@@ -1006,340 +225,190 @@
       <div>
         <div class="hero__eyebrow">
           <div class="hero__eyebrow-line"></div>
-          <span class="hero__eyebrow-text">Coaching &amp; Training</span>
+          <span class="hero__eyebrow-text">Coaching · Retreats · Orientierung</span>
         </div>
         <h1 class="hero__title">MUTREICH</h1>
         <p class="hero__claim">„Der Weg beginnt mit Mut."</p>
         <p class="hero__lead">
-          Du fragst dich, ob dein Job wirklich zu dir passt? Du willst nach einer Krise neu starten – oder einfach wissen, wohin dein Weg führt? Ich begleite Menschen, die den Mut finden wollen, sich neu zu entscheiden.
+          Du spürst, dass mehr möglich ist – aber der nächste Schritt ist unklar. Wir begleiten Menschen, die mutig neu anfangen wollen. Ehrlich, direkt, ohne Umwege.
         </p>
         <div class="hero__actions">
-          <a href="#kontakt" class="btn btn--yellow">Jetzt Gespräch vereinbaren</a>
-          <a href="#angebote" class="btn btn--outline-light">Angebote entdecken</a>
+          <a href="kontakt.html" class="btn btn--yellow">Jetzt Gespräch vereinbaren</a>
+          <a href="angebote.html" class="btn btn--outline-light">Angebote entdecken</a>
         </div>
       </div>
-      <div class="hero__stats">
-        <div class="hero__stat-card">
-          <div class="hero__stat-number">20+</div>
-          <div class="hero__stat-label">Jahre Führungs- &amp; Lebenserfahrung</div>
+      <div class="hero__right">
+        <div class="hero__card">
+          <div class="hero__card-num">20+</div>
+          <div class="hero__card-label">Jahre Führungs- &amp; Lebenserfahrung im Team</div>
         </div>
-        <div class="hero__stat-card hero__stat-card--accent">
-          <div class="hero__stat-number" style="color:#fff">3</div>
-          <div class="hero__stat-label">Coaching-Schwerpunkte, ein Ziel: Klarheit</div>
+        <div class="hero__card hero__card--accent">
+          <div class="hero__card-num">3</div>
+          <div class="hero__card-label">Coaches – ein Ziel: Klarheit und Mut</div>
         </div>
-        <div class="hero__stat-card">
-          <div class="hero__stat-number">6</div>
-          <div class="hero__stat-label">Wochen – und du siehst deinen Weg klarer</div>
+        <div class="hero__card">
+          <div class="hero__card-num">Präsenz</div>
+          <div class="hero__card-label">oder Online – wie es für dich passt</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!--  ÜBER MICH                                                 -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <section class="section" id="ueber-mich">
+  <!-- ÜBER PIT -->
+  <section class="section" id="ueber">
     <div class="container">
-      <div class="about__inner">
-        <div class="about__photo reveal">
-          <div class="about__photo-placeholder">
-            <div class="about__photo-note">Foto folgt – Jan Peter „Pit" Jansen</div>
-          </div>
-          <div class="about__accent-box">
+      <div class="intro__inner">
+        <div class="intro__photo reveal">
+          <div class="intro__photo-note">Foto folgt – Jan Peter „Pit" Jansen</div>
+          <div class="intro__accent">
             <strong>Pit</strong>
             <span>Jan Peter Jansen</span>
           </div>
         </div>
-        <div class="about__text reveal reveal-delay-1">
-          <span class="label">Über mich</span>
+        <div class="reveal reveal-delay-1">
+          <span class="label">Gründer & Coach</span>
           <h2>Ich kenne den Weg – weil ich ihn selbst gegangen bin.</h2>
-          <p class="about__intro">
-            Coach, Trainer, ehemaliger Führungskraft – und jemand, der weiß, wie es sich anfühlt, wenn der Boden unter den Füßen wegrutscht.
+          <p class="intro__quote">
+            Coach, Trainer und ehemaliger Führungskraft – mit über 20 Jahren Erfahrung und zwei intensiven Lebenskrisen im Gepäck.
           </p>
-          <div class="about__body">
+          <div class="intro__body">
             <p>
-              Über <strong>20 Jahre lang</strong> habe ich in Führungspositionen gearbeitet und Menschen geführt, Projekte gesteuert und Entscheidungen getroffen. Und dann: zwei intensive Lebenskrisen, die mich gezwungen haben, alles zu hinterfragen.
+              Nach Burnout, Depression und einem beruflichen Neuanfang weiß ich aus eigener Erfahrung: Der Weg zur Berufung ist selten geradlinig. Aber er lohnt sich.
             </p>
             <p>
-              Nicht angenehm. Aber rückblickend das Beste, was mir passieren konnte. Denn genau diese Erfahrungen – der Bruch, die Stille, der Neuanfang – haben mich gelehrt, was es bedeutet, mutig zu sein. Nicht laut oder heldenhaft. Sondern ehrlich sich selbst gegenüber.
-            </p>
-            <p>
-              Heute begleite ich Menschen dabei, <strong>ihre Stärken zu entdecken, Klarheit zu gewinnen und mutig neu anzufangen</strong>. Kein Heilsversprechen, keine fertige Antwort – aber ein ehrlicher, mutiger Weg gemeinsam.
+              Heute begleite ich Menschen dabei, ihre Stärken zu entdecken, Klarheit zu gewinnen und mutig neu anzufangen – gemeinsam mit Frank Herrig-Jansen und Cora Holweg unter der Marke MUTREICH.
             </p>
           </div>
-          <div class="about__chips">
+          <div class="intro__chips">
+            <span class="chip">EASC-zertifizierter Coach</span>
+            <span class="chip">Life Trust Coach (homodea)</span>
             <span class="chip">Systemisches Coaching</span>
-            <span class="chip">Berufliche Neuorientierung</span>
-            <span class="chip">Resilienz</span>
-            <span class="chip">Achtsamkeit</span>
-            <span class="chip">Führungskräfteentwicklung</span>
-            <span class="chip">20+ J. Berufserfahrung</span>
+            <span class="chip">Resilienz & Achtsamkeit</span>
           </div>
-          <div style="margin-top:36px">
-            <a href="#kontakt" class="btn btn--primary">Jetzt Gespräch vereinbaren</a>
+          <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap">
+            <a href="team.html" class="btn btn--primary">Das Team kennenlernen</a>
+            <a href="kontakt.html" class="btn btn--outline">Gespräch vereinbaren</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!--  ANGEBOTE                                                  -->
-  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- ANGEBOTE TEASER -->
   <section class="section section--alt" id="angebote">
     <div class="container">
       <div class="offers__header reveal">
-        <span class="label" style="color:var(--teal)">Angebote</span>
+        <span class="label">Angebote</span>
         <h2>Wo stehst du gerade?</h2>
-        <p>Egal ob Sinnkrise, Schulabschluss oder einfach zu viel Lärm im Kopf – hier findest du das passende Format für deine Situation.</p>
+        <p class="lead" style="margin:12px auto 0">Für jeden Wendepunkt das passende Format – persönlich, online oder als Retreat.</p>
       </div>
       <div class="offers__grid">
-
-        <!-- Card 1 -->
         <div class="offer-card reveal">
           <div class="offer-card__icon">🧭</div>
-          <div class="offer-card__tag">Mid-Career &amp; Lebenskrisen</div>
-          <h3 class="offer-card__title">Beruf oder Berufung</h3>
-          <p class="offer-card__subtitle">„In 6 Wochen zu mehr Klarheit und Sinn im Job"</p>
-          <p class="offer-card__desc">
-            Für Menschen zwischen 30 und 50, die sich fragen, ob ihr Job wirklich zu ihnen passt – die nach einem Burnout neu starten wollen oder in einer beruflichen Sinnkrise stecken. Kein Wischiwaschi. Echte Auseinandersetzung, echte Veränderung.
-          </p>
-          <div class="offer-card__meta">
-            <span class="meta-tag">Online-Gruppencoaching</span>
-            <span class="meta-tag">6 Wochen</span>
-            <span class="meta-tag">Einzelcoaching möglich</span>
-            <span class="meta-tag">Live-Sessions</span>
-          </div>
-          <a href="#kontakt" class="btn btn--primary offer-card__btn">Mehr erfahren</a>
+          <div class="offer-card__tag">Coaching</div>
+          <h3 class="offer-card__title">Beruf oder Berufung – Klarheit im Job</h3>
+          <p class="offer-card__desc">Für Menschen am Wendepunkt und Schüler &amp; Studierende, die wissen wollen wohin ihr Weg führt. Präsenz oder Online, Einzel oder Gruppe.</p>
+          <a href="angebote.html" class="offer-card__link">Mehr erfahren →</a>
         </div>
-
-        <!-- Card 2 -->
         <div class="offer-card reveal reveal-delay-1">
-          <div class="offer-card__icon">🎯</div>
-          <div class="offer-card__tag">Schüler &amp; Studierende</div>
-          <h3 class="offer-card__title">Was mache ich nach der Schule?</h3>
-          <p class="offer-card__subtitle">„Dein Orientierungscamp für Berufs- und Studienwahl"</p>
-          <p class="offer-card__desc">
-            Für Schüler:innen ab Klasse 9, Abiturienten und Studienabbrechende, die echte Orientierung suchen – statt noch mehr vagen Ratschläge von Familie und Berufsberatern. Hier geht's darum, was wirklich zu dir passt.
-          </p>
-          <div class="offer-card__meta">
-            <span class="meta-tag">Online-Gruppencoaching</span>
-            <span class="meta-tag">6 Wochen</span>
-            <span class="meta-tag">Einzelcoaching möglich</span>
-          </div>
-          <a href="#kontakt" class="btn btn--outline offer-card__btn">Mehr erfahren</a>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="offer-card reveal reveal-delay-2">
           <div class="offer-card__icon">🌿</div>
-          <div class="offer-card__tag">Retreats &amp; Achtsamkeit</div>
-          <h3 class="offer-card__title">Stille Retreats</h3>
-          <p class="offer-card__subtitle">„Raum für Resilienz, Achtsamkeit und Stille"</p>
-          <p class="offer-card__desc">
-            Workshops und Retreats zu Achtsamkeit, Resilienz und innerer Stille. In einer Welt voller Lärm: Raum schaffen, um sich selbst wieder zu hören. In Kooperation mit Cora Musterfrau.
-          </p>
-          <div class="offer-card__meta">
-            <span class="meta-tag">1–2 Tage</span>
-            <span class="meta-tag">Kooperation</span>
-            <span class="meta-tag">Termine auf Anfrage</span>
-          </div>
-          <a href="#kontakt" class="btn btn--outline offer-card__btn">Mehr erfahren</a>
+          <div class="offer-card__tag">Retreats</div>
+          <h3 class="offer-card__title">Stille Retreats mit Cora Holweg</h3>
+          <p class="offer-card__desc">1–2 Tage Achtsamkeit, Resilienz und Stille als Kraftquelle. Raum schaffen, sich selbst wieder hören – gemeinsam mit Cora Holweg.</p>
+          <a href="angebote.html#retreats" class="offer-card__link">Mehr erfahren →</a>
         </div>
-
+        <div class="offer-card reveal reveal-delay-2">
+          <div class="offer-card__icon">🎤</div>
+          <div class="offer-card__tag">Vortrag</div>
+          <h3 class="offer-card__title">Berufung finden – Warum es nie zu spät ist</h3>
+          <p class="offer-card__desc">Pits persönliche Geschichte von der Krise zum Neuanfang – als Präsenzvortrag für Gruppen und Events. Mutig, ehrlich, direkt.</p>
+          <a href="vortrag.html" class="offer-card__link">Mehr erfahren →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!--  KOOPERATIONSPARTNER                                       -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <section class="section section--dark" id="partner">
+  <!-- TEAM TEASER -->
+  <section class="section section--dark" id="team">
     <div class="container">
-      <div class="partners__header reveal">
-        <span class="label">Kooperationspartner</span>
-        <h2>Gemeinsam stark.</h2>
-        <p>Für spezifische Themen arbeite ich mit vertrauenswürdigen Coaches zusammen, die ich persönlich kenne und schätze.</p>
+      <div class="team-teaser__header reveal">
+        <span class="label">Das Team</span>
+        <h2 style="color:#fff">Drei Coaches, eine Richtung.</h2>
+        <p class="lead" style="color:rgba(255,255,255,.6);margin:12px auto 0">Wir bringen unterschiedliche Erfahrungen und Schwerpunkte mit – und teilen eine gemeinsame Überzeugung: Jeder Mensch kann mutig neu anfangen.</p>
       </div>
-      <div class="partners__grid">
-
-        <div class="partner-card reveal">
-          <div class="partner-card__avatar">CM</div>
-          <div class="partner-card__name">Cora Musterfrau</div>
-          <div class="partner-card__focus">Toxic Relationships &amp; Neuorientierung</div>
-          <p class="partner-card__text">
-            Cora begleitet Menschen, die narzisstische Beziehungen erlebt haben und sich neu orientieren wollen – mit tiefer Fachkenntnis und einem klaren Blick für das Wesentliche. Ausgebildet bei Veit Lindau.
-          </p>
-          <a href="#kontakt" class="partner-card__link">Kontakt aufnehmen →</a>
+      <div class="team-teaser__grid">
+        <div class="team-card reveal">
+          <div class="team-card__avatar">PJ</div>
+          <div class="team-card__name">Jan Peter „Pit" Jansen</div>
+          <div class="team-card__role">Gründer · Coach · Trainer</div>
+          <p class="team-card__text">Berufung finden, Resilienz aufbauen, mutig neu starten – aus eigener Erfahrung mit Krise und Neuanfang.</p>
         </div>
-
-        <div class="partner-card reveal reveal-delay-1">
-          <div class="partner-card__avatar">FH</div>
-          <div class="partner-card__name">Frank Herrig-Jansen</div>
-          <div class="partner-card__focus">Neuorientierung &amp; Führungskräfteentwicklung</div>
-          <p class="partner-card__text">
-            Frank spezialisiert sich auf berufliche Neuorientierung, Mobbing- und Konfliktbewältigung sowie die Entwicklung von Führungskräften. Mit Klarheit, Direktheit und echtem Verständnis für die Herausforderungen im Berufsleben.
-          </p>
-          <a href="https://frank-herrig-jansen.de" target="_blank" rel="noopener" class="partner-card__link">frank-herrig-jansen.de →</a>
+        <div class="team-card reveal reveal-delay-1">
+          <div class="team-card__avatar">FH</div>
+          <div class="team-card__name">Frank Herrig-Jansen</div>
+          <div class="team-card__role">Partner · Coach · Fachanwalt</div>
+          <p class="team-card__text">Berufliche Krisen aus zwei Perspektiven: rechtlich und persönlich. Einzigartige Kombination aus Arbeitsrecht und Coaching.</p>
         </div>
-
+        <div class="team-card reveal reveal-delay-2">
+          <div class="team-card__avatar">CH</div>
+          <div class="team-card__name">Cora Holweg</div>
+          <div class="team-card__role">Partnerin · Coach · Retreats</div>
+          <p class="team-card__text">Neuorientierung nach toxischen Beziehungen – und Stille Retreats als Raum für Achtsamkeit und innere Kraft.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:44px">
+        <a href="team.html" class="btn btn--outline-light">Das Team kennenlernen</a>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!--  TESTIMONIALS                                              -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <section class="section" id="stimmen">
-    <div class="container">
-      <div class="testimonials__header reveal">
-        <span class="label">Stimmen</span>
-        <h2>Was andere sagen.</h2>
-        <p>Echte Rückmeldungen von Menschen, die den Weg mitgegangen sind.</p>
-      </div>
-      <div class="testimonials__placeholder reveal">
-        <div class="testimonials__placeholder-icon">💬</div>
-        <h3>Testimonials folgen in Kürze.</h3>
-        <p>Hier werden bald Erfahrungsberichte von Coaching-Teilnehmenden erscheinen.</p>
-      </div>
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container reveal">
+      <h2>Der erste Schritt kostet nichts.</h2>
+      <p>Ein offenes Gespräch, 30 Minuten, keine Verpflichtung. Schreib uns – wir melden uns innerhalb von 24 Stunden.</p>
+      <a href="kontakt.html" class="btn btn--yellow">Jetzt Erstgespräch vereinbaren</a>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!--  KONTAKT                                                   -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <section class="section section--alt" id="kontakt">
-    <div class="container">
-      <div class="contact__inner">
-        <div class="contact__left reveal">
-          <span class="label">Kontakt</span>
-          <h2>Lass uns sprechen.</h2>
-          <p class="contact__lead">
-            Kein Verkaufsgespräch, keine Verpflichtung. Ein erstes offenes Gespräch – um zu schauen, ob und wie ich dir weiterhelfen kann. Schreib mir einfach.
-          </p>
-          <div class="contact__info">
-            <div class="contact__info-item">
-              <div class="contact__info-icon">✉️</div>
-              <span>Antworte in der Regel innerhalb von 24 Stunden</span>
-            </div>
-            <div class="contact__info-item">
-              <div class="contact__info-icon">🤝</div>
-              <span>Erstgespräch kostenlos &amp; unverbindlich</span>
-            </div>
-            <div class="contact__info-item">
-              <div class="contact__info-icon">🌐</div>
-              <span>Online via Zoom oder Telefonat</span>
-            </div>
-          </div>
-        </div>
-        <div class="contact__form reveal reveal-delay-1">
-          <form id="contactForm" onsubmit="handleSubmit(event)">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Dein Name</label>
-                <input type="text" id="name" name="name" placeholder="Max Mustermann" required />
-              </div>
-              <div class="form-group">
-                <label for="email">E-Mail-Adresse</label>
-                <input type="email" id="email" name="email" placeholder="max@beispiel.de" required />
-              </div>
-            </div>
-            <div class="form-select-group">
-              <label for="thema">Worum geht es?</label>
-              <select id="thema" name="thema">
-                <option value="">Bitte wählen …</option>
-                <option value="mid-career">Beruf oder Berufung (Mid-Career)</option>
-                <option value="schueler">Orientierung nach der Schule</option>
-                <option value="retreat">Stille Retreats &amp; Achtsamkeit</option>
-                <option value="b2b">Unternehmen / B2B-Anfrage</option>
-                <option value="sonstiges">Sonstiges</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="nachricht">Deine Nachricht</label>
-              <textarea id="nachricht" name="nachricht" placeholder="Erzähl kurz, was dich bewegt. Wo stehst du gerade?" required></textarea>
-            </div>
-            <button type="submit" class="btn btn--primary form-submit">Nachricht absenden</button>
-            <p class="form-note">Mit dem Absenden stimmst du der Verarbeitung deiner Daten zur Bearbeitung deiner Anfrage zu. Mehr dazu in der <a href="#datenschutz" style="color:var(--teal)">Datenschutzerklärung</a>.</p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!--  FOOTER                                                    -->
-  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__top">
-        <div>
+        <div class="footer__brand">
           <div class="footer__logo">MUT<span>REICH</span></div>
           <div class="footer__claim">„Der Weg beginnt mit Mut."</div>
         </div>
-        <div class="footer__links">
-          <a href="#ueber-mich">Über mich</a>
-          <a href="#angebote">Angebote</a>
-          <a href="#partner">Partner</a>
-          <a href="#kontakt">Kontakt</a>
-        </div>
+        <nav class="footer__nav">
+          <div class="footer__nav-group">
+            <div class="footer__nav-title">Navigation</div>
+            <ul class="footer__nav-links">
+              <li><a href="team.html">Das Team</a></li>
+              <li><a href="angebote.html">Angebote</a></li>
+              <li><a href="fuer-wen.html">Für wen</a></li>
+              <li><a href="vortrag.html">Vortrag</a></li>
+              <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+          </div>
+          <div class="footer__nav-group">
+            <div class="footer__nav-title">Rechtliches</div>
+            <ul class="footer__nav-links">
+              <li><a href="#">Impressum</a></li>
+              <li><a href="#">Datenschutz</a></li>
+            </ul>
+          </div>
+        </nav>
       </div>
       <div class="footer__bottom">
-        <div class="footer__copy">
-          &copy; 2025 MUTREICH – Jan Peter Jansen. Alle Rechte vorbehalten.
-        </div>
+        <div class="footer__copy">&copy; 2026 MUTREICH · Institut für Berufsorientierung &amp; Berufung · Jan Peter Jansen</div>
         <div class="footer__legal">
-          <a href="#impressum" id="impressum">Impressum</a>
-          <a href="#datenschutz" id="datenschutz">Datenschutz</a>
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!--  SCRIPTS                                                   -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <script>
-    // Nav scroll effect
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-
-    // Mobile nav toggle
-    const burger = document.getElementById('burger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    burger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-    });
-
-    // Close mobile menu on link click
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
-    });
-
-    // Scroll-reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => observer.observe(el));
-
-    // Contact form (placeholder – no backend)
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button[type=submit]');
-      btn.textContent = 'Nachricht gesendet ✓';
-      btn.style.background = '#3a7a6c';
-      btn.disabled = true;
-      // TODO: Integrate with form backend / email provider
-    }
-  </script>
-
+  <script src="nav-footer.js"></script>
 </body>
 </html>

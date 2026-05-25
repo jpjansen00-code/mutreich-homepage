@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Das Team – MUTREICH</title>
+  <meta name="description" content="Drei Coaches, eine Richtung: Jan Peter Jansen, Frank Herrig-Jansen und Cora Holweg – das Team hinter MUTREICH." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Team Profile ─────────────────────────────────── */
+    .profile {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 80px;
+      align-items: start;
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .profile:last-child { border-bottom: none; }
+    .profile--flip { grid-template-columns: 1.5fr 1fr; }
+    .profile--flip .profile__visual { order: 2; }
+    .profile--flip .profile__content { order: 1; }
+
+    .profile__visual { position: relative; }
+
+    .profile__photo {
+      aspect-ratio: 3/4;
+      border-radius: 24px;
+      display: flex; align-items: flex-end; padding: 24px;
+      position: relative; overflow: hidden;
+    }
+    .profile--pit .profile__photo { background: linear-gradient(145deg, var(--teal) 0%, var(--dark) 100%); }
+    .profile--frank .profile__photo { background: linear-gradient(145deg, #3a5a57 0%, var(--dark) 100%); }
+    .profile--cora .profile__photo { background: linear-gradient(145deg, #c09b30 0%, #7a5a1e 100%); }
+
+    .profile__photo::before {
+      content: ''; position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+      width: 88px; height: 88px; border-radius: 50%; background: rgba(255,255,255,.13);
+    }
+    .profile__photo::after {
+      content: ''; position: absolute; top: 128px; left: 50%; transform: translateX(-50%);
+      width: 140px; height: 180px; border-radius: 70px 70px 0 0; background: rgba(255,255,255,.08);
+    }
+    .profile__photo-note {
+      position: relative; z-index: 1;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px; padding: 8px 12px;
+      font-size: .76rem; color: rgba(255,255,255,.75); text-align: center; width: 100%;
+    }
+
+    .profile__badge {
+      position: absolute; bottom: -16px; right: -16px;
+      background: var(--yellow); border-radius: 14px; padding: 14px 18px;
+      box-shadow: var(--shadow-lg); text-align: center;
+    }
+    .profile--frank .profile__badge { background: var(--teal); }
+    .profile--cora .profile__badge { background: var(--dark); }
+    .profile__badge strong { display: block; font-size: 1.5rem; font-weight: 800; color: var(--dark); line-height: 1; }
+    .profile--frank .profile__badge strong,
+    .profile--cora .profile__badge strong { color: #fff; }
+    .profile__badge span { font-size: .72rem; font-weight: 600; color: rgba(45,59,58,.65); }
+    .profile--frank .profile__badge span,
+    .profile--cora .profile__badge span { color: rgba(255,255,255,.7); }
+
+    .profile__content {}
+    .profile__name { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin: 10px 0 6px; letter-spacing: -.02em; }
+    .profile__role {
+      font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 24px;
+    }
+    .profile--frank .profile__role { color: #3a7566; }
+    .profile--cora .profile__role { color: #b88a20; }
+
+    .profile__intro {
+      font-size: 1.05rem; font-weight: 500; color: var(--teal);
+      margin-bottom: 20px; line-height: 1.55;
+    }
+    .profile--frank .profile__intro { color: #3a7566; }
+    .profile--cora .profile__intro { color: #b88a20; }
+
+    .profile__text p { color: var(--muted); font-size: .95rem; margin-bottom: 14px; line-height: 1.7; }
+
+    .profile__qual {
+      margin-top: 24px;
+      background: rgba(94,156,141,.06);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+    }
+    .profile--frank .profile__qual { border-color: #3a7566; background: rgba(58,118,102,.06); }
+    .profile--cora .profile__qual { border-color: #b88a20; background: rgba(184,138,32,.06); }
+
+    .profile__qual-title {
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+    }
+    .profile__qual ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .profile__qual li {
+      font-size: .88rem; color: var(--text); padding-left: 16px; position: relative;
+    }
+    .profile__qual li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--teal); font-weight: 600;
+    }
+    .profile--frank .profile__qual li::before { color: #3a7566; }
+    .profile--cora .profile__qual li::before { color: #b88a20; }
+
+    .profile__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+
+    .profile__link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 20px; font-size: .88rem; font-weight: 600;
+      color: var(--teal); transition: gap var(--transition);
+    }
+    .profile--frank .profile__link { color: #3a7566; }
+    .profile__link:hover { gap: 12px; }
+
+    /* ── Hinweis-Box ──────────────────────────────────── */
+    .note-box {
+      background: rgba(226,182,72,.08);
+      border: 1px solid rgba(226,182,72,.25);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-top: 20px;
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .note-box strong { color: var(--dark); }
+
+    /* ── CTA ──────────────────────────────────────────── */
+    .team-cta { text-align: center; padding: 72px 0 0; }
+    .team-cta h2 { margin-bottom: 12px; }
+    .team-cta p { color: var(--muted); max-width: 500px; margin: 0 auto 28px; }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .profile, .profile--flip {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 56px 0;
+      }
+      .profile--flip .profile__visual,
+      .profile--flip .profile__content { order: unset; }
+      .profile__photo { max-width: 320px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">MUT<span>REICH</span></a>
+      <ul class="nav__links">
+        <li><a href="team.html">Team</a></li>
+        <li><a href="angebote.html">Angebote</a></li>
+        <li><a href="fuer-wen.html">Für wen</a></li>
+        <li><a href="vortrag.html">Vortrag</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <a href="kontakt.html" class="btn btn--yellow nav__cta">Gespräch vereinbaren</a>
+      <button class="nav__burger" id="burger" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="team.html">Team</a>
+      <a href="angebote.html">Angebote</a>
+      <a href="fuer-wen.html">Für wen</a>
+      <a href="vortrag.html">Vortrag</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="kontakt.html" class="btn btn--yellow" style="align-self:flex-start;margin-top:4px">Gespräch vereinbaren</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="label page-hero__label">Das Team</span>
+      <h1 class="page-hero__title">Drei Coaches. Eine Richtung.</h1>
+      <p class="page-hero__lead">Wir bringen unterschiedliche Erfahrungen, Methoden und Lebenswege mit – und teilen eine gemeinsame Überzeugung: Jeder Mensch kann mutig neu anfangen.</p>
+    </div>
+  </section>
+
+  <!-- PROFILE: PIT -->
+  <section class="section">
+    <div class="container">
+
+      <div class="profile profile--pit reveal">
+        <div class="profile__visual">
+          <div class="profile__photo">
+            <div class="profile__photo-note">Foto folgt – Jan Peter „Pit" Jansen</div>
+          </div>
+          <div class="profile__badge">
+            <strong>Pit</strong>
+            <span>Gründer</span>
+          </div>
+        </div>
+        <div class="profile__content">
+          <span class="label">Gründer & Coach</span>
+          <h2 class="profile__name">Jan Peter „Pit" Jansen</h2>
+          <div class="profile__role">Coach · Trainer · Gründer MUTREICH</div>
+          <p class="profile__intro">
+            Ich kenne den Weg zur Berufung – weil ich ihn selbst gegangen bin. Mit allem was dazugehört: Umwegen, Krisen und einem Neuanfang der sich gelohnt hat.
+          </p>
+          <div class="profile__text">
+            <p>
+              Über 20 Jahre habe ich als Führungskraft in einer privaten Hochschule gearbeitet – Menschen entwickelt, Teams geführt, Entscheidungen getroffen. Und trotzdem gespürt: Da ist noch mehr.
+            </p>
+            <p>
+              Zwei intensive Lebenskrisen haben mich gezwungen, alles zu hinterfragen. Burnout, Depression, zwei Rehabilitationen. Nicht angenehm – aber rückblickend der Beginn meines eigentlichen Weges. Heute weiß ich, was es bedeutet, wirklich mutig zu sein: nicht laut, nicht heldenhaft – sondern ehrlich sich selbst gegenüber.
+            </p>
+            <p>
+              Genau diese Erfahrung bringe ich in meine Arbeit ein. Kein Coach-Sprech, keine Heilsversprechen – aber echte Begleitung, die aus eigenem Erleben kommt.
+            </p>
+          </div>
+          <div class="profile__qual">
+            <div class="profile__qual-title">Ausbildung & Qualifikationen</div>
+            <ul>
+              <li>Zertifizierter Coach nach EASC-Standards</li>
+              <li>Life Trust Coach (homodea / Veit Lindau)</li>
+              <li>Systemisches Coaching</li>
+              <li>Über 20 Jahre Führungserfahrung</li>
+            </ul>
+          </div>
+          <div class="profile__chips" style="margin-top:20px">
+            <span class="chip">Berufung finden</span>
+            <span class="chip">Menschen am Wendepunkt</span>
+            <span class="chip">Schüler & Studierende</span>
+            <span class="chip">Resilienz & Achtsamkeit</span>
+          </div>
+          <div style="margin-top:28px">
+            <a href="kontakt.html" class="btn btn--primary">Gespräch mit Pit vereinbaren</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE: FRANK -->
+      <div class="profile profile--frank profile--flip reveal">
+        <div class="profile__visual">
+          <div class="profile__photo">
+            <div class="profile__photo-note">Foto folgt – Frank Herrig-Jansen</div>
+          </div>
+          <div class="profile__badge">
+            <strong>25+</strong>
+            <span>Jahre Erfahrung</span>
+          </div>
+        </div>
+        <div class="profile__content">
+          <span class="label" style="color:#3a7566">Partner & Coach</span>
+          <h2 class="profile__name">Frank Herrig-Jansen</h2>
+          <div class="profile__role">Coach · Fachanwalt · Mediator</div>
+          <p class="profile__intro">
+            Wenn berufliche Krisen rechtliche und persönliche Dimensionen haben – dann braucht es jemanden, der beides versteht.
+          </p>
+          <div class="profile__text">
+            <p>
+              Als Fachanwalt für Arbeitsrecht und zertifizierter systemischer Business Coach verbinde ich zwei Welten, die selten zusammenkommen: rechtliche Klarheit und persönliche Begleitung.
+            </p>
+            <p>
+              Menschen die durch Mobbing, Kündigung oder Konflikte am Arbeitsplatz an einen Wendepunkt geraten, brauchen oft beides: jemanden der die rechtliche Situation einschätzt – und jemanden der sie beim Neuanfang begleitet. Das ist mein Ansatz.
+            </p>
+            <p>
+              Mit über 25 Jahren Erfahrung im Arbeitsrecht und meiner Ausbildung zum Coach und Mediator bringe ich einen Blick mit, den andere Coaches nicht haben.
+            </p>
+          </div>
+          <div class="profile__qual">
+            <div class="profile__qual-title">Ausbildung & Qualifikationen</div>
+            <ul>
+              <li>Fachanwalt für Arbeitsrecht</li>
+              <li>Master of Mediation</li>
+              <li>Systemischer Business Coach (ICA-zertifiziert)</li>
+              <li>Trainer (ICA-zertifiziert)</li>
+            </ul>
+          </div>
+          <div class="profile__chips" style="margin-top:20px">
+            <span class="chip" style="border-color:rgba(58,118,102,.3);color:#3a7566">Berufliche Neuorientierung</span>
+            <span class="chip" style="border-color:rgba(58,118,102,.3);color:#3a7566">Mobbing & Konflikte</span>
+            <span class="chip" style="border-color:rgba(58,118,102,.3);color:#3a7566">Führungskräfteentwicklung</span>
+          </div>
+          <div class="note-box">
+            <strong>Hinweis:</strong> Franks Betriebsräte-Seminare zu Arbeitsrecht und Verhandlung laufen unter seinem eigenen Namen und sind nicht Teil von MUTREICH.
+          </div>
+          <a href="https://frank-herrig-jansen.de" target="_blank" rel="noopener" class="profile__link">
+            frank-herrig-jansen.de besuchen →
+          </a>
+        </div>
+      </div>
+
+      <!-- PROFILE: CORA -->
+      <div class="profile profile--cora reveal">
+        <div class="profile__visual">
+          <div class="profile__photo">
+            <div class="profile__photo-note">Foto folgt – Cora Holweg</div>
+          </div>
+          <div class="profile__badge">
+            <strong>CH</strong>
+            <span>Partnerin</span>
+          </div>
+        </div>
+        <div class="profile__content">
+          <span class="label" style="color:#b88a20">Partnerin & Coach</span>
+          <h2 class="profile__name">Cora Holweg</h2>
+          <div class="profile__role">Coach · Retreats · Achtsamkeit</div>
+          <p class="profile__intro">
+            Wenn hinter einer Lebenskrise eine toxische Beziehung steckt – dann braucht Neuorientierung einen besonderen Raum.
+          </p>
+          <div class="profile__text">
+            <p>
+              Ich begleite Menschen, die narzisstische oder toxische Beziehungen erlebt haben und sich neu orientieren wollen. Das ist ein spezifischer Weg, der besonderes Fingerspitzengefühl braucht – und tiefes Verständnis für die Dynamiken die dahinterstecken.
+            </p>
+            <p>
+              Gemeinsam mit Pit biete ich Stille Retreats an – 1 bis 2 Tage Raum für Achtsamkeit, Resilienz und Stille. Denn manchmal braucht es keine Antworten, sondern erst den Raum um sich selbst wieder zu hören.
+            </p>
+            <p>
+              Unsere gemeinsame Coaching-Ausbildung bei Veit Lindau / homodea verbindet uns – und macht die Zusammenarbeit unter MUTREICH zu einer echten Einheit.
+            </p>
+          </div>
+          <div class="profile__qual">
+            <div class="profile__qual-title">Ausbildung & Qualifikationen</div>
+            <ul>
+              <li>Zertifizierte Coach nach EASC-Standards</li>
+              <li>Life Trust Coach (homodea / Veit Lindau)</li>
+              <li>Schwerpunkt: Neuorientierung nach toxischen Beziehungen</li>
+            </ul>
+          </div>
+          <div class="profile__chips" style="margin-top:20px">
+            <span class="chip" style="border-color:rgba(184,138,32,.3);color:#b88a20">Toxische Beziehungen</span>
+            <span class="chip" style="border-color:rgba(184,138,32,.3);color:#b88a20">Neuorientierung</span>
+            <span class="chip" style="border-color:rgba(184,138,32,.3);color:#b88a20">Stille Retreats</span>
+            <span class="chip" style="border-color:rgba(184,138,32,.3);color:#b88a20">Achtsamkeit</span>
+          </div>
+          <div style="margin-top:28px">
+            <a href="kontakt.html" class="btn btn--primary">Gespräch vereinbaren</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="team-cta reveal">
+        <h2>Nicht sicher, wer der richtige Ansprechpartner ist?</h2>
+        <p>Schreib uns einfach – wir finden gemeinsam heraus, wer am besten zu deinem Thema passt.</p>
+        <a href="kontakt.html" class="btn btn--primary">Jetzt Erstgespräch vereinbaren</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="footer__logo">MUT<span>REICH</span></div>
+          <div class="footer__claim">„Der Weg beginnt mit Mut."</div>
+        </div>
+        <nav class="footer__nav">
+          <div class="footer__nav-group">
+            <div class="footer__nav-title">Navigation</div>
+            <ul class="footer__nav-links">
+              <li><a href="team.html">Das Team</a></li>
+              <li><a href="angebote.html">Angebote</a></li>
+              <li><a href="fuer-wen.html">Für wen</a></li>
+              <li><a href="vortrag.html">Vortrag</a></li>
+              <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+          </div>
+          <div class="footer__nav-group">
+            <div class="footer__nav-title">Rechtliches</div>
+            <ul class="footer__nav-links">
+              <li><a href="#">Impressum</a></li>
+              <li><a href="#">Datenschutz</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 MUTREICH · Institut für Berufsorientierung &amp; Berufung · Jan Peter Jansen</div>
+        <div class="footer__legal">
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav-footer.js"></script>
+</body>
+</html>

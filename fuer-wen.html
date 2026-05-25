@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Für wen – MUTREICH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Für-wen page styles ── */
+    .audience-section {
+      padding: 88px 0;
+    }
+    .audience-section--flip {
+      background: var(--beige);
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .audience-grid--flip {
+      direction: rtl;
+    }
+    .audience-grid--flip > * {
+      direction: ltr;
+    }
+
+    .audience-visual {
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .audience-visual__inner {
+      text-align: center;
+      color: rgba(255,255,255,.5);
+      font-size: .85rem;
+    }
+    .audience-visual__icon {
+      font-size: 4rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .audience-visual--alt {
+      background: var(--teal);
+    }
+
+    .audience-content {}
+    .audience-label {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .audience-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -.03em;
+      margin-bottom: 18px;
+      line-height: 1.15;
+    }
+    .audience-lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .check-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: .95rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .check-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--teal);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-size: 12px;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-top: 2px;
+    }
+
+    .audience-note {
+      background: rgba(94,156,141,.08);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px;
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* Quote strip */
+    .quote-strip {
+      background: var(--dark);
+      padding: 72px 0;
+      text-align: center;
+    }
+    .quote-strip__text {
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: #fff;
+      max-width: 760px;
+      margin: 0 auto 16px;
+      line-height: 1.35;
+      letter-spacing: -.02em;
+    }
+    .quote-strip__text em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+    .quote-strip__sub {
+      font-size: .9rem;
+      color: rgba(255,255,255,.5);
+    }
+
+    /* Not-for-you section */
+    .not-for-you {
+      background: var(--beige);
+      padding: 72px 0;
+    }
+    .not-for-you__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .not-for-you__card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 28px;
+      border: 1px solid var(--border);
+    }
+    .not-for-you__card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    .not-for-you__card p {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 800px) {
+      .audience-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .audience-grid--flip {
+        direction: ltr;
+      }
+      .not-for-you__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">MUT<span>REICH</span></a>
+    <ul class="nav__links">
+      <li><a href="angebote.html">Angebote</a></li>
+      <li><a href="fuer-wen.html">Für wen</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="vortrag.html">Vortrag</a></li>
+      <li><a href="kontakt.html" class="btn btn--yellow nav__cta">Erstgespräch</a></li>
+    </ul>
+    <button class="nav__burger" id="burger" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="angebote.html">Angebote</a>
+    <a href="fuer-wen.html">Für wen</a>
+    <a href="team.html">Team</a>
+    <a href="vortrag.html">Vortrag</a>
+    <a href="kontakt.html">Erstgespräch vereinbaren</a>
+  </div>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <span class="label page-hero__label">Für wen</span>
+    <h1 class="page-hero__title">Ist MUTREICH das Richtige für dich?</h1>
+    <p class="page-hero__lead">Wir begleiten Menschen, die spüren, dass mehr möglich ist – und den Mut haben, genauer hinzuschauen.</p>
+  </div>
+</section>
+
+<!-- Zielgruppe 1: Menschen am Wendepunkt -->
+<section class="audience-section">
+  <div class="container">
+    <div class="audience-grid reveal">
+      <div class="audience-visual">
+        <div class="audience-visual__inner">
+          <span class="audience-visual__icon">🧭</span>
+          <p>Foto: Mensch am Wegkreuz</p>
+        </div>
+      </div>
+      <div class="audience-content">
+        <span class="audience-label">Zielgruppe 1</span>
+        <h2 class="audience-title">Menschen am Wendepunkt</h2>
+        <p class="audience-lead">Du bist berufserfahren, hast vieles erreicht – und trotzdem nagt das Gefühl, dass du noch nicht wirklich dort bist, wo du hingehörst. Vielleicht steht eine große Entscheidung an. Vielleicht hat das Leben sie schon für dich getroffen.</p>
+
+        <ul class="check-list">
+          <li>Du fragst dich, was wirklich zu dir passt – nicht nur was gut auf dem Lebenslauf aussieht</li>
+          <li>Du bist mitten in einem Umbruch: Jobwechsel, Kündigung, Neuanfang, Burnout, Trennungsjahr</li>
+          <li>Du willst nicht einfach den nächsten Job – du willst verstehen, was dich wirklich antreibt</li>
+          <li>Du bist bereit, ehrlich mit dir selbst zu sein</li>
+        </ul>
+
+        <p class="audience-note">Das Coaching ist kein Schnellkurs und kein Motivations-Workshop. Es ist eine strukturierte Begleitung über 6–12 Wochen, die tiefer geht – und deshalb wirklich etwas verändert.</p>
+
+        <a href="kontakt.html" class="btn btn--primary">Erstgespräch vereinbaren</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zielgruppe 2: Schüler & Studierende -->
+<section class="audience-section audience-section--flip">
+  <div class="container">
+    <div class="audience-grid audience-grid--flip reveal">
+      <div class="audience-visual audience-visual--alt">
+        <div class="audience-visual__inner">
+          <span class="audience-visual__icon">🎓</span>
+          <p>Foto: junger Mensch mit Notizbuch</p>
+        </div>
+      </div>
+      <div class="audience-content">
+        <span class="audience-label">Zielgruppe 2</span>
+        <h2 class="audience-title">Schüler & Studierende</h2>
+        <p class="audience-lead">Du stehst am Anfang – und schon jetzt spürst du, dass du mehr willst als „irgendwas mit BWL" oder den sicheren Beamtenjob. Gut so. Dieser Mut jetzt kann den Unterschied machen.</p>
+
+        <ul class="check-list">
+          <li>Du stehst vor der Frage: Studium, Ausbildung, Gap Year – was passt wirklich zu mir?</li>
+          <li>Du willst früh verstehen, was deine Stärken sind und wie du sie einsetzen kannst</li>
+          <li>Du willst keine Ratschläge aus Elternsicht, sondern echte Orientierung</li>
+          <li>Du bist neugierig auf dich selbst und bereit, dir Fragen zu stellen, die unbequem sein können</li>
+        </ul>
+
+        <p class="audience-note">Pit ist selbst Vater und kennt beide Seiten des Tisches. Er gibt keine fertigen Antworten – er hilft dir, deine eigenen zu finden.</p>
+
+        <a href="angebote.html#schueler" class="btn btn--outline">Mehr zu Schüler-Coaching</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quote strip -->
+<div class="quote-strip">
+  <div class="container">
+    <p class="quote-strip__text reveal">"Der richtige Moment ist <em>jetzt</em> – nicht wenn alles perfekt ist."</p>
+    <p class="quote-strip__sub reveal reveal-delay-1">Pit Jansen, MUTREICH</p>
+  </div>
+</div>
+
+<!-- Nicht für wen -->
+<section class="not-for-you">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Ehrlichkeit gehört dazu</span>
+      <h2>Für wen MUTREICH <em style="font-style:normal;color:var(--teal)">nicht</em> das Richtige ist</h2>
+      <p class="lead">Wir arbeiten lieber mit wenigen Menschen intensiv als mit vielen oberflächlich. Deshalb sind wir ehrlich, wenn wir nicht der beste Fit sind.</p>
+    </div>
+    <div class="not-for-you__grid">
+      <div class="not-for-you__card reveal reveal-delay-1">
+        <h3>Schnelle Antworten gesucht</h3>
+        <p>Wer nach einem Orientierungstest sucht, der in 20 Minuten die perfekte Karriere ausspuckt, ist bei uns falsch. Echte Klarheit braucht Zeit und Auseinandersetzung.</p>
+      </div>
+      <div class="not-for-you__card reveal reveal-delay-2">
+        <h3>Kein Veränderungswille</h3>
+        <p>Coaching funktioniert nur, wenn du bereit bist, dich zu bewegen. Wer nur bestätigt haben möchte, was er ohnehin schon weiß, wird bei uns nicht glücklich.</p>
+      </div>
+      <div class="not-for-you__card reveal reveal-delay-1">
+        <h3>Rein therapeutischer Bedarf</h3>
+        <p>Wir sind Coaches, keine Therapeuten. Bei schweren psychischen Belastungen empfehlen wir professionelle therapeutische Unterstützung – gerne begleiten wir dann ergänzend.</p>
+      </div>
+      <div class="not-for-you__card reveal reveal-delay-2">
+        <h3>Nur Netzwerken</h3>
+        <p>Wer hauptsächlich Kontakte sucht, wird enttäuscht sein. Bei MUTREICH geht es um Auseinandersetzung mit sich selbst – nicht um Business-Networking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section--dark" style="text-align:center;">
+  <div class="container">
+    <span class="label" style="color:var(--yellow);">Los geht's</span>
+    <h2 class="reveal" style="color:#fff;margin-bottom:16px;">Erkennst du dich wieder?</h2>
+    <p class="lead reveal reveal-delay-1" style="color:rgba(255,255,255,.7);margin:0 auto 36px;">Das Erstgespräch ist kostenlos, unverbindlich – und du weißt danach mehr über dich als vorher.</p>
+    <a href="kontakt.html" class="btn btn--yellow reveal reveal-delay-2">Jetzt Erstgespräch vereinbaren</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="footer__logo">MUT<span>REICH</span></div>
+        <div class="footer__claim">„Der Weg beginnt mit Mut."</div>
+      </div>
+      <nav class="footer__nav">
+        <div class="footer__nav-group">
+          <div class="footer__nav-title">Angebote</div>
+          <ul class="footer__nav-links">
+            <li><a href="angebote.html#coaching">Coaching</a></li>
+            <li><a href="angebote.html#retreats">Retreats</a></li>
+            <li><a href="vortrag.html">Vortrag</a></li>
+          </ul>
+        </div>
+        <div class="footer__nav-group">
+          <div class="footer__nav-title">Mehr</div>
+          <ul class="footer__nav-links">
+            <li><a href="fuer-wen.html">Für wen</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2026 MUTREICH – Jan Peter Jansen</span>
+      <div class="footer__legal">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav-footer.js"></script>
+</body>
+</html>

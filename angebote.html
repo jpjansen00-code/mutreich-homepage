@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angebote – MUTREICH</title>
+  <meta name="description" content="Coaching, Stille Retreats und Vorträge bei MUTREICH – Präsenz oder Online, Einzel oder Gruppe." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Angebot-Block ────────────────────────────────── */
+    .offer-block {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 72px;
+      align-items: start;
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .offer-block:last-of-type { border-bottom: none; }
+    .offer-block--flip { grid-template-columns: 1.4fr 1fr; }
+    .offer-block--flip .offer-block__visual { order: 2; }
+    .offer-block--flip .offer-block__content { order: 1; }
+
+    .offer-block__visual {}
+    .offer-block__icon-box {
+      width: 100%; aspect-ratio: 4/3;
+      border-radius: 24px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      position: relative; overflow: hidden;
+    }
+    .offer-block__icon-box--coaching { background: linear-gradient(135deg, var(--teal) 0%, #3a7566 100%); }
+    .offer-block__icon-box--retreat  { background: linear-gradient(135deg, var(--dark) 0%, #1a2e2c 100%); }
+    .offer-block__icon-box--vortrag  { background: linear-gradient(135deg, #c09b30 0%, #7a5a1e 100%); }
+    .offer-block__icon-box::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,.12), transparent 60%);
+    }
+
+    .offer-block__meta {
+      margin-top: 24px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .offer-block__meta-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: .88rem; color: var(--muted);
+    }
+    .offer-block__meta-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: rgba(94,156,141,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; flex-shrink: 0; margin-top: 1px;
+    }
+    .offer-block__meta-item strong { display: block; font-size: .78rem; color: var(--text); margin-bottom: 2px; }
+
+    .offer-block__content {}
+    .offer-block__title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin: 10px 0 14px; letter-spacing: -.02em; }
+    .offer-block__subtitle { font-size: 1rem; font-weight: 500; color: var(--teal); font-style: italic; margin-bottom: 20px; }
+    .offer-block--retreat .offer-block__subtitle { color: rgba(255,255,255,.7); }
+
+    .offer-block__text p { color: var(--muted); font-size: .95rem; margin-bottom: 14px; line-height: 1.7; }
+
+    /* Zielgruppen-Tags */
+    .offer-block__for {
+      margin-top: 8px; margin-bottom: 24px;
+      background: rgba(94,156,141,.06);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+    }
+    .offer-block__for-title {
+      font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+    }
+    .offer-block__for-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    /* Wochen-Tabelle */
+    .week-table { margin-top: 20px; margin-bottom: 24px; }
+    .week-table__title {
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+    }
+    .week-row {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 12px; align-items: start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .88rem;
+    }
+    .week-row:last-child { border-bottom: none; }
+    .week-row__num { font-weight: 700; color: var(--teal); }
+    .week-row__label { font-weight: 600; color: var(--text); }
+    .week-row__desc { color: var(--muted); font-size: .83rem; margin-top: 2px; }
+
+    /* Retreat-Sektion ist dunkel */
+    .section--retreat { background: var(--dark); }
+    .section--retreat .offer-block { border-color: rgba(255,255,255,.1); }
+    .section--retreat .offer-block__for { background: rgba(255,255,255,.06); }
+    .section--retreat .offer-block__for-title { color: rgba(255,255,255,.4); }
+    .section--retreat .offer-block__text p { color: rgba(255,255,255,.65); }
+    .section--retreat .offer-block__meta-item { color: rgba(255,255,255,.55); }
+    .section--retreat .offer-block__meta-item strong { color: rgba(255,255,255,.9); }
+    .section--retreat .offer-block__meta-icon { background: rgba(255,255,255,.08); }
+    .section--retreat .offer-block__title { color: #fff; }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .offer-block, .offer-block--flip {
+        grid-template-columns: 1fr; gap: 40px; padding: 56px 0;
+      }
+      .offer-block--flip .offer-block__visual,
+      .offer-block--flip .offer-block__content { order: unset; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">MUT<span>REICH</span></a>
+      <ul class="nav__links">
+        <li><a href="team.html">Team</a></li>
+        <li><a href="angebote.html">Angebote</a></li>
+        <li><a href="fuer-wen.html">Für wen</a></li>
+        <li><a href="vortrag.html">Vortrag</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <a href="kontakt.html" class="btn btn--yellow nav__cta">Gespräch vereinbaren</a>
+      <button class="nav__burger" id="burger" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="team.html">Team</a>
+      <a href="angebote.html">Angebote</a>
+      <a href="fuer-wen.html">Für wen</a>
+      <a href="vortrag.html">Vortrag</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="kontakt.html" class="btn btn--yellow" style="align-self:flex-start;margin-top:4px">Gespräch vereinbaren</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="label page-hero__label">Angebote</span>
+      <h1 class="page-hero__title">Für jeden Wendepunkt das passende Format.</h1>
+      <p class="page-hero__lead">Coaching, Retreats und Impulse – Präsenz oder Online, Einzel oder Gruppe. Kein Preisschild auf dieser Seite, dafür ein ehrliches Erstgespräch.</p>
+    </div>
+  </section>
+
+  <!-- COACHING -->
+  <section class="section" id="coaching">
+    <div class="container">
+      <div class="offer-block reveal">
+        <div class="offer-block__visual">
+          <div class="offer-block__icon-box offer-block__icon-box--coaching">🧭</div>
+          <div class="offer-block__meta">
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">📍</div>
+              <div><strong>Format</strong>Präsenz- oder Online-Coaching, nach Absprache</div>
+            </div>
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">👤</div>
+              <div><strong>Einzel oder Gruppe</strong>1:1 Begleitung oder Gruppenformat (ab Phase 2)</div>
+            </div>
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">⏱</div>
+              <div><strong>Dauer</strong>Einzelsession 60 Min · 5er- und 10er-Pakete möglich</div>
+            </div>
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">💬</div>
+              <div><strong>Erstgespräch</strong>30 Minuten, kostenlos & unverbindlich</div>
+            </div>
+          </div>
+        </div>
+        <div class="offer-block__content">
+          <span class="label">Coaching</span>
+          <h2 class="offer-block__title">Beruf oder Berufung – Klarheit im Job</h2>
+          <p class="offer-block__subtitle">„In 6 Wochen zu mehr Klarheit und Sinn im Job"</p>
+
+          <div class="offer-block__for">
+            <div class="offer-block__for-title">Für wen</div>
+            <div class="offer-block__for-tags">
+              <span class="chip">Menschen am Wendepunkt</span>
+              <span class="chip">Mid-Career 30–55 Jahre</span>
+              <span class="chip">Nach Burnout oder Jobverlust</span>
+              <span class="chip">Sinnkrise im Job</span>
+            </div>
+          </div>
+
+          <div class="offer-block__text">
+            <p>Du fragst dich, ob dein Job wirklich zu dir passt? Du spürst, dass etwas nicht stimmt – aber du weißt nicht genau was? Oder du stehst nach einem Burnout, einer Kündigung oder einer persönlichen Erschütterung vor einem Neuanfang?</p>
+            <p>Im Coaching schauen wir gemeinsam: Was erfüllt dich wirklich? Was sind deine Stärken? Und was ist der nächste mutige Schritt – nicht der perfekte, sondern der richtige.</p>
+            <p>Ich bringe mit, was kein Buch ersetzen kann: eigene Erfahrung mit Krise, Neuanfang und dem Weg zur Berufung.</p>
+          </div>
+
+          <div class="week-table">
+            <div class="week-table__title">Ablauf Gruppencoaching (6 Wochen)</div>
+            <div class="week-row">
+              <div class="week-row__num">Woche 1</div>
+              <div><div class="week-row__label">Kick-off & Standortbestimmung</div><div class="week-row__desc">Wo stehst du? Was willst du erreichen?</div></div>
+            </div>
+            <div class="week-row">
+              <div class="week-row__num">Woche 2</div>
+              <div><div class="week-row__label">Selbstanalyse & Stärken</div><div class="week-row__desc">Stärken- und Werte-Check, Interessenfeldanalyse</div></div>
+            </div>
+            <div class="week-row">
+              <div class="week-row__num">Woche 3</div>
+              <div><div class="week-row__label">Vision & Motivation</div><div class="week-row__desc">Berufliche Vision entwickeln, Selbstzweifel begegnen</div></div>
+            </div>
+            <div class="week-row">
+              <div class="week-row__num">Woche 4</div>
+              <div><div class="week-row__label">Orientierung & Möglichkeiten</div><div class="week-row__desc">Optionen erkunden, Entscheidungstools</div></div>
+            </div>
+            <div class="week-row">
+              <div class="week-row__num">Woche 5</div>
+              <div><div class="week-row__label">Erste Schritte & Selbstpräsentation</div><div class="week-row__desc">Konkrete Maßnahmen, Auftreten stärken</div></div>
+            </div>
+            <div class="week-row">
+              <div class="week-row__num">Woche 6</div>
+              <div><div class="week-row__label">Action-Plan & Abschluss</div><div class="week-row__desc">Nächste Schritte, Feedback, Ausblick</div></div>
+            </div>
+          </div>
+
+          <a href="kontakt.html" class="btn btn--primary">Jetzt Erstgespräch vereinbaren</a>
+        </div>
+      </div>
+
+      <!-- Schüler-Coaching -->
+      <div class="offer-block offer-block--flip reveal" style="padding-top:0;margin-top:-20px">
+        <div class="offer-block__visual">
+          <div class="offer-block__icon-box offer-block__icon-box--coaching" style="background:linear-gradient(135deg,#4a7a6e,#2d5a52)">🎯</div>
+          <div class="offer-block__meta">
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">📍</div>
+              <div><strong>Format</strong>Online, Präsenz nach Absprache</div>
+            </div>
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">🎓</div>
+              <div><strong>Zielgruppe</strong>Ab Klasse 9, Abiturienten, Studienabbrecher</div>
+            </div>
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">⏱</div>
+              <div><strong>Dauer</strong>6 Wochen Gruppe oder Einzelcoaching</div>
+            </div>
+          </div>
+        </div>
+        <div class="offer-block__content">
+          <span class="label">Coaching für Schüler & Studierende</span>
+          <h2 class="offer-block__title">Was mache ich nach der Schule?</h2>
+          <p class="offer-block__subtitle">„Dein Orientierungscamp für Berufs- und Studienwahl"</p>
+
+          <div class="offer-block__for">
+            <div class="offer-block__for-title">Für wen</div>
+            <div class="offer-block__for-tags">
+              <span class="chip">Schüler ab Klasse 9</span>
+              <span class="chip">Abiturienten</span>
+              <span class="chip">Studienabbrecher</span>
+              <span class="chip">Orientierungssuchende</span>
+            </div>
+          </div>
+
+          <div class="offer-block__text">
+            <p>Du weißt nicht, welches Studium oder welche Ausbildung zu dir passt? Du fühlst den Druck von allen Seiten – Eltern, Lehrer, Gesellschaft – aber weißt nicht was du selbst willst?</p>
+            <p>Kein Standardtest, keine vorgefertigte Antwort. Wir finden gemeinsam heraus, was dich wirklich antreibt, was deine Stärken sind – und was das für deine nächsten Schritte bedeutet.</p>
+          </div>
+
+          <a href="kontakt.html" class="btn btn--primary">Erstgespräch vereinbaren</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RETREATS -->
+  <section class="section section--retreat section--dark" id="retreats">
+    <div class="container">
+      <div class="offer-block reveal">
+        <div class="offer-block__visual">
+          <div class="offer-block__icon-box offer-block__icon-box--retreat">🌿</div>
+          <div class="offer-block__meta">
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">📅</div>
+              <div><strong>Dauer</strong>1 oder 2 Tage</div>
+            </div>
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">👥</div>
+              <div><strong>Format</strong>Kleine Gruppe, max. 12 Personen</div>
+            </div>
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">🤝</div>
+              <div><strong>Mit</strong>Cora Holweg & Pit Jansen</div>
+            </div>
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">📍</div>
+              <div><strong>Ort & Termine</strong>Auf Anfrage</div>
+            </div>
+          </div>
+        </div>
+        <div class="offer-block__content">
+          <span class="label">Retreats</span>
+          <h2 class="offer-block__title">Stille Retreats – Raum für Resilienz und Achtsamkeit</h2>
+          <p class="offer-block__subtitle">„Sich selbst wieder hören – in einer Welt voller Lärm"</p>
+
+          <div class="offer-block__for" style="background:rgba(255,255,255,.06);border-radius:10px">
+            <div class="offer-block__for-title">Für wen</div>
+            <div class="offer-block__for-tags">
+              <span class="chip" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8)">Menschen am Wendepunkt</span>
+              <span class="chip" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8)">Erschöpfte Berufstätige</span>
+              <span class="chip" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8)">Alle die zur Ruhe kommen wollen</span>
+            </div>
+          </div>
+
+          <div class="offer-block__text">
+            <p>In einer Welt die nie aufhört zu lärmen braucht es manchmal einen Ort der Stille. Nicht um Antworten zu finden – sondern um erst wieder in Kontakt zu kommen mit sich selbst.</p>
+            <p>Unsere Stille Retreats verbinden Achtsamkeitspraxis, Resilienz-Impulse und echte Begegnung in einer kleinen Gruppe. Ohne Programm-Overload. Ohne Erwartungsdruck.</p>
+            <p>Gemeinsam mit Cora Holweg schaffen wir einen Raum in dem du nicht funktionieren musst – sondern einfach sein kannst.</p>
+          </div>
+
+          <a href="kontakt.html" class="btn btn--yellow">Anfrage & Termine erfragen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VORTRAG -->
+  <section class="section section--alt" id="vortrag">
+    <div class="container">
+      <div class="offer-block offer-block--flip reveal" style="border-bottom:none">
+        <div class="offer-block__visual">
+          <div class="offer-block__icon-box offer-block__icon-box--vortrag">🎤</div>
+          <div class="offer-block__meta">
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">📍</div>
+              <div><strong>Format</strong>Präsenzvortrag</div>
+            </div>
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">⏱</div>
+              <div><strong>Dauer</strong>60–90 Minuten inkl. Q&A</div>
+            </div>
+            <div class="offer-block__meta-item">
+              <div class="offer-block__meta-icon">📅</div>
+              <div><strong>Termine</strong>Auf Anfrage – <a href="vortrag.html" style="color:var(--teal);font-weight:600">zur Vortrag-Seite</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="offer-block__content">
+          <span class="label">Vortrag</span>
+          <h2 class="offer-block__title">Berufung finden – Warum es nie zu spät ist, neu anzufangen</h2>
+          <p class="offer-block__subtitle">Pits persönliche Geschichte – von der Krise zum Neuanfang</p>
+          <div class="offer-block__text">
+            <p>Dieser Vortrag ist keine Motivationsshow. Es ist eine ehrliche Geschichte über Scheitern, Schweigen und den Mut, trotzdem neu anzufangen.</p>
+            <p>Pit teilt seinen persönlichen Weg – von der Führungskraft zum Coach, durch Krisen die ihn fast gebrochen hätten, bis zu dem Moment in dem er wusste: Das ist mein Weg.</p>
+            <p>Für Gruppen, Vereine, Unternehmen und alle die bereit sind, sich selbst eine ehrliche Frage zu stellen: Lebe ich wirklich das Leben das zu mir passt?</p>
+          </div>
+          <a href="vortrag.html" class="btn btn--primary">Mehr zum Vortrag</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner" style="background:var(--dark)">
+    <div class="container reveal">
+      <h2 style="color:#fff">Nicht sicher welches Angebot passt?</h2>
+      <p style="color:rgba(255,255,255,.7)">Im kostenlosen Erstgespräch finden wir gemeinsam heraus, was der richtige nächste Schritt für dich ist.</p>
+      <a href="kontakt.html" class="btn btn--yellow">Jetzt Erstgespräch vereinbaren</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="footer__logo">MUT<span>REICH</span></div>
+          <div class="footer__claim">„Der Weg beginnt mit Mut."</div>
+        </div>
+        <nav class="footer__nav">
+          <div class="footer__nav-group">
+            <div class="footer__nav-title">Navigation</div>
+            <ul class="footer__nav-links">
+              <li><a href="team.html">Das Team</a></li>
+              <li><a href="angebote.html">Angebote</a></li>
+              <li><a href="fuer-wen.html">Für wen</a></li>
+              <li><a href="vortrag.html">Vortrag</a></li>
+              <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+          </div>
+          <div class="footer__nav-group">
+            <div class="footer__nav-title">Rechtliches</div>
+            <ul class="footer__nav-links">
+              <li><a href="#">Impressum</a></li>
+              <li><a href="#">Datenschutz</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 MUTREICH · Institut für Berufsorientierung &amp; Berufung · Jan Peter Jansen</div>
+        <div class="footer__legal"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav-footer.js"></script>
+</body>
+</html>
